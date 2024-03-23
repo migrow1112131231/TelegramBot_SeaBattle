@@ -11,11 +11,22 @@ router = Router()
 
 @router.message(F.text == '/start')
 async def process_command_start(message: Message):
+    await message.answer(
+        text='<b>Это жирный текст</b>\n\
+<i>Это прописной текст</i>\n\
+<u>Это подчеркнутый текст</u>\n\
+<del>Это перечеркнутый текст</del>\n\
+<a href="https://vk.com/m_boltachev">Это ссылка</a>\n\
+<tg-spoiler>Это тг спойлер</tg-spoiler>'
+    )
+
+@router.message(F.text == '/play')
+async def process_command_play(message: Message):
     if not users.get(message.from_user.id):
         users[message.from_user.id] = {}
     reset_field(message.from_user.id)
     await message.answer(
-        text=handbook['/start'],
+        text=handbook['/play'],
         reply_markup=get_field_keyboard(message.from_user.id)
     )
 

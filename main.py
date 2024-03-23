@@ -17,7 +17,7 @@ async def main():
 
     config = add_config()
     dp = Dispatcher()
-    bot = Bot(token=config.telegram_bot.token)
+    bot = Bot(token=config.telegram_bot.token, parse_mode='HTML')
 
     dp.include_router(router=users_handlers.router)
     # dp.startup.register(create_keyboard_menu)
